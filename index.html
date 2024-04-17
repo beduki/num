@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web development resources</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .navigation {
+            width: 250px;
+            background-color: #282828;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding-top: 60px;
+        }
+        .navigation ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .navigation ul li {
+            margin-bottom: 10px;
+        }
+        .navigation ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation ul li a:hover {
+            background-color: #333;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .main-content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .main-content p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #282828;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+.navbar {
+    background-color: #007bff;
+    color: #fff;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.navbar ul li {
+    display: inline;
+}
+.navbar ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover {
+    background-color: #0056b3;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.main-content {
+    margin-top: 20px;
+}
+footer {
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+        </style>
+</head>
+<body>
+    <nav class="navigation">
+        <ul>
+            <li><a href="#prac1">Practical 1</a></li>
+            <li><a href="#prac2">Practical 2</a></li>
+            <li><a href="#prac3">Practical 3</a></li>
+            <li><a href="#prac4">Practical 4</a></li>
+            <li><a href="#prac5">Practical 5</a></li>
+            <li><a href="#prac6">Practical 6</a></li>
+            <li><a href="#prac7">Practical 7</a></li>
+            <li><a href="#prac8">Practical 8</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <section id="prac1">
+            <h2>Solution of algebraic and transcendental equations:</h2>
+            <pre><code>
+                1. bisection method:
+
+                deff('y=f(x)','y=x^3-2*x-5');
+                a=2, b=3;
+                d=0.00001;
+                c=1;
+                printf('{BISECTION METHOD}successive approximation \na\tb\tm\tf(m)\n');
+                while abs(a-b)>d
+                    m = (a+b)/2;
+                    printf('%f\t%f\t%f\t%f\n',a,b,m,f(m));
+                    if f(m)*f(a)>0
+                        a=m;
+                    else 
+                        b=m;
+                end
+                c= c+1;
+                end
+                printf('the solution after %i iterations is %d',c,m);
+
+                2. regula falsi method:
+
+                deff('y=f(x)','y = x^3-2*x-5');
+                a = 2, b = 3;
+                d = 0.01;
+                c = 1;
+                printf('{REGULA FALSI METHOD}successive approximation :- \na\tb\tm\tf(m)\t\n');
+                for i = 1:25
+                    x1= (a*f(b)-b*f(a))/(f(b)-f(a));
+                    if(f(x1)*f(a))>0
+                        b=x1;
+                    else
+                        a=x1;
+                    end
+                    if abs(f(x1))&lt; d
+                        break;
+                    end
+                    printf('%f\t%f\t%f\t%f\t%f\n',a,b,f(a),f(b),x1);
+                    c = c+1;
+                end
+                printf('the solution of equation after %i iteration upto 2 decimal places is %g',c,m);
+
+                3.newton raphson method:
+
+                deff('y = f(x)','y = x*exp(x)-1');
+                deff('y1 = f1(x)','y1 = (x+1)*exp(x)');
+                x0 = 1;
+                d = 0.0001;
+                c = 0;
+                n = 1;
+                printf('{NEWTON RAPHSON METHOD}successive iterations :- \nx0\tf(x0)\tf1(x0)\n');
+                while n==1
+                        x2 = x0;
+                        x1 = x0-(f(x0)/f1(x0));
+                        x0 = x1;
+                        printf('%f\t%f\t%f\n',x2,f(x1),f(x2));
+                        c = c+1;
+                        if abs(f(x0))&lt; d
+                            break;
+                        end
+                end
+                printf('the root of %i iteration is : %f' ,c, x0);
+
+                4.secant method:
+
+                deff('y=f(x)','y=x^3-2*x-5');
+                x1=2;
+                x2=3;
+                n=1;
+                c=0;
+                printf('{SECANT METHOD} successive iterations:-\nx1\tx2\tx3\tf(x3)\n');
+                while n==1
+                    x3=(x1*f(x2)-x2*f(x1))/(f(x2)-f(x1));
+                    printf('%f\t%f\t%f\t%f\n',x1,x2,x3,f(x3));
+                    if (f(x3)*f(x1))>0
+                        x2 = x3;
+                    else
+                        x1 = x3;
+                    end
+                    if abs (f(x3))&lt; 0.0001
+                        break;
+                    end
+                    c = c+1;
+                end
+                printf('The root of the equation after %i iteration is : %f',c,x3);
+
+            </code></pre>
+        </section>
+
+        <section id="prac2">
+            <h2>Intercollation</h2>
+            <pre><code>
+                1.newton's forward difference intercollation:
+
+                x = [10 20 30 40 50];
+                y = [46 66 81 93 101];
+                n = length(x);
+                del = %nan*ones(n,5);
+                del(:,1) = y;
+                for j = 1:4
+                    for i = n:-1:j+1
+                        del(i,j+1) = del(i,j) - del(i-1,j);
+                    end
+                end
+                del = round(del*10^3)/10^3;
+                mprintf("%5s%5s%7s%7s%7s%7s\n",'x','y','dy','d2y','d3y','d4y');
+                disp([x' del])
+                del(:,1) = [];
+                X = 42;
+                h = x(2) - x(1);
+                p = (X - x(n)) / h;
+                x0 = x(n);
+                y0 = y(n);
+                dely0 = del(n,:);
+                Y = y0;
+                for i = 1:length(dely0)
+                    t = 1;
+                    for j = 1:i
+                        t = t * (p + j - 1);
+                    end
+                    Y = Y + t * dely0(i) / factorial(i);
+                end
+                printf('y(42)=%f\n', Y);
+
+                2.newton's backward difference intercollation:
+
+                x = [10 20 30 40 50];
+                y = [46 66 81 93 101];
+                n = length(x);
+                del = %nan*ones(n,5);
+                del(:,1) = y;
+                for j = 1:4
+                    for i = n:-1:j+1
+                        del(i,j+1) = del(i,j) - del(i-1,j);
+                    end
+                end
+                del = round(del*10^3)/10^3;
+                mprintf("%5s%5s%7s%7s%7s%7s\n",'x','y','dy','d2y','d3y','d4y');
+                disp([x' del])
+                del(:,1) = [];
+                X = 42;
+                h = x(2) - x(1);
+                p = (X - x(n)) / h;
+                x0 = x(n);
+                y0 = y(n);
+                dely0 = del(n,:);
+                Y = y0;
+                for i = 1:length(dely0)
+                    t = 1;
+                    for j = 1:i
+                        t = t * (p + j - 1);
+                    end
+                    Y = Y + t * dely0(i) / factorial(i);
+                end
+                printf('y(42)=%f\n', Y);
+
+            </code></pre>
+        </section>
+
+        <section id="prac3">
+            <h2>Numerical integration: </h2>
+            <pre><code>
+                1. trapezoidal rule:
+
+                x = [0 0.2 0.4 0.6 0.8 1];
+                y = [1 1.0857 1.1448 1.1790 1.1891 1.1755];
+                h = 0.2;
+                n = length(x);
+                area = 0;
+                for i = 1:n
+                    if i==1 | i==n then
+                        area = area + y(i);
+                    else
+                        area = area + 2*y(i);
+                    end
+                end
+                area = area*(h/2);
+                printf('the value of integration by trapezoidal rule is : %f',area);
+
+                2.simpson's 1/3 rule:
+
+                x = [0 0.25 0.50 0.75 1];
+                y = [0 0.0615 0.2222 0.3956 0.5];
+                h = 0.25;
+                n = length(x);
+                area = 0;
+                for i = 1:n
+                    if i == 1 | i == n then
+                        area = area + y(i);
+                    elseif (modulo(i,2))==0 then 
+                        area = area + 2*y(i);
+                    else
+                        area = area + 4*y(i);
+                    end
+                end
+                area = area *(h/3);
+                printf('value of integration by simpsons 1/3rd rule is :%f ', area);
+
+                3.simpson's 3/8th rule:
+
+                x = [0 1 2 3 4 5 6];
+                y = [1 0.5 0.2 0.1 0.0588 0.0385 0.0270];
+                h = 1;
+                n = length(x);
+                area = 0;
+                for i = 1:n
+                    if i == 1 | i == n then
+                        area = area + y(i);
+                    elseif (modulo(i-1,3))==0 then
+                        area = area + 2*y(i);
+                    else
+                        area = area + 3*y(i);
+                    end
+                end
+                area = area*(3*h/8);
+                printf('the value of itegration by simpsons 3/8th rule :%f',area);
+ 
+            </code></pre>
+        </section>
+
+        <section id="prac4">
+            <h2>Numerical differentiation: </h2>
+            <pre><code>
+                1.numerical differentiation:
+
+                x = [4.5 5 5.5 6 6.5 7 7.5];
+                y = [9.69 12.9 16.71 21.18 26.37 32.34 39.15];
+                c = 1;
+                for i = 1:6
+                    d1(c)= y(i+1)- y(i);
+                    c = c+1;
+                end
+                c = 1;
+                for i = 1:5
+                    d2(c)= d1(i+1)- d1(i);
+                    c = c+1;
+                end
+                c = 1;
+                for i = 1:4
+                    d3(c)= d2(i+1)- d2(i);
+                    c = c+1;
+                end
+                for i = 1:3
+                    d4(c)= d3(i+1)- d3(i);
+                    c = c+1;
+                end
+                for i = 1:2
+                    d5(c)= d4(i+1)- d4(i);
+                    c = c+1;
+                end
+                for i = 1:1
+                    d6(c)= d5(i+1)- d5(i);
+                    c = c+1;
+                end
+                c = 1;
+                x0 = 6;
+                h = 0.5;
+                f1 = ((d1(4)-d2(4)/2+d3(4)/3-d4(4)/4+d5(4)/5)/h);
+                printf('The first derivative of function at 6 is %f',f1);
+                f2 = (d2(4)-d3(4))/h^2;
+                printf('The second derivative of function at 6 is%f',f2);
+
+            </code></pre>
+        </section>
+
+        <section id="prac5">
+            <h2>Solving linear system of equation using iterative methods.</h2>
+            <pre><code>
+                1.gauss siedel method:
+
+                a = [27 6 -1; 6 15 2; 1 1 54];
+                b = [85 72 110];
+                n = length(b);
+                tol = 0.0001;
+                iter = 1;
+                maxit = 5;
+                x = zeros(n, 1);
+                E = ones(n, 1);
+                s = diag(diag(a));
+                t = s-a;
+                xold = x;
+                while (1)
+                    for i = 1:n
+                        x(i, iter+1) = (b(i)+t(i,:)*xold)/a(i,i);
+                        E(i , iter+1) = (x(i, iter+1)-xold(i))/x(i, iter+1)*100;
+                        xold(i) = x(i , iter+1);  
+                end
+                if x(:, iter)==0 then
+                    E = 1;
+                else  E = sqrt((sum((E(:,iter+1))^2))/n);
+                end
+                if E &lt;= tol | iter == maxit then
+                    break;
+                end
+                iter = iter +1;
+                end
+                X = x(:, iter);
+                x= round(x*10^5)/10^5;
+                x(:,1)=[];
+                mprintf("%s%3s%11s%10s","iteration no.",'x1','x2','x3');
+                disp([(1:iter)'x']);
+
+                2.gauss jordan method:
+
+                a = [1 1 1; 2 -3 4; 3 4 5];
+                b = [9; 13; 40];
+                n = length(b);
+                aug = [a, b];
+                for j = 1:n-1
+                    for i = j+1:n
+                        aug(i,j:n+1) = aug(i,j:n+1) - aug(i,j)/aug(j,j)*aug(j,j:n+1);
+                        disp(aug)
+                    end
+                end
+                for j = n:-1:2
+                    aug(1:j-1,:) = aug(1:j-1,:) - aug(1:j-1,j)/aug(j,j)*aug(j,:);
+                    disp(aug)
+                end
+                for j = 1:n
+                    aug(j,:) = aug(j,:) / aug(j,j);
+                end
+                x = aug(:,n+1);
+                disp("The solution of the given equations is:");
+                disp(strcat(["x = ", string(x(1))]))
+                disp(strcat(["y = ", string(x(2))]))
+                disp(strcat(["z = ", string(x(3))]))
+
+            </code></pre>
+        </section>
+
+        <section id="prac6">
+            <h2>Solutions of differencial equation: </h2>
+            <pre><code>
+                1.euler's method:
+
+                function [y0]= euler(x0,y0,h,yest,f)
+                    n = (yest-x0)/h
+                    for i = 1:n
+                        y0 = y0 +f(x0,y0)*h;
+                        x0 = x0 +h;
+                    end
+                endfunction
+                deff('[y] = f(x,y)','y = y-x*y+x');
+                z = euler(0, 1, 0.2, 1, f);
+                mprintf("the answer is : %f",z);
+
+                2.modified euler's method:
+
+                function [y10] = eulermod(x0, y0, h, n, f)
+                    x1 = x0 +h;
+                    y10 = y0 +h*f(x0, y0);
+                    while (n>1)
+                        x0 = x0 +h;
+                        x1 = y10;
+                        y10 = y0 +(h/2)*(f(x0,y0)+f(x0,y10));
+                        if(abs(y10-x1)&lt;0.0001)
+                            y10
+                            abort
+                    end
+                    n = n-1;
+                end
+                endfunction
+                deff('[y]=f(x,y)','y = log(x+y)');
+                z = eulermod(1, 2, 0.2, 10, f);
+                printf("answer is %f",z);
+
+                3.runge kutta method(2 & 4 order both):
+
+                deff('y=f(x,y)','y = y-x');
+                y = 2;
+                x0 = 0;
+                h = 0.1;
+                k1 = h*f(x,y);
+                k2 = h*f(x+h, y +k1);
+                y1 = y+(k1 +k2)/2;
+                printf('\n y(0.1) by second order runge kutta method is %f \n', y1);
+                k1 = h*f(x,y);
+                k2 = h*f(x+(h/2),y+(k1/2));
+                k3 = h*f(x+(h/2),y+(k2/2));
+                k4 = h*f(x+h,y+k3);
+                y2 = y+(k1+(2*k2)+(2*k3)+k4)/6;
+                printf("in y(0.1) by fourth order runge kutta method answer is : %f",y2);
+
+            </code></pre>
+        </section>
+
+        <section id="prac7">
+            <h2>Regression 1: </h2>
+            <pre><code>
+                1.linear regression:
+
+                write and execute a scilab code for the following fit a straight line for the following data
+                x  1  2  3  4  5  6  7
+                y  0.5  2.5  2  4  3.5  6  5.5
+
+
+                x=[1,2,3,4,5,6,7];
+                y=[0.5,2.5,2,4,3.5,6,5.5];
+                n=7;
+                s=0;
+                xsq=0;
+                xsum=0;
+                ysum=0;
+                for i=1:7
+                s=s+(det(x(1,i)))*(det(y(1,i)));
+                xsq=xsq+(det(x(1,i))^2);
+                xsum=xsum+det(x(1,i));
+                ysum=ysum+det(y(1,i));
+                end
+                disp(s,"Sum of product of x and y=");
+                disp(xsq,"Sum of square of x=");
+                disp(xsum,"sum os all the x=");
+                disp(ysum,"Sum of all the y=");
+                a=xsum/n;
+                b=ysum/n;
+                d=(n*s-xsum*ysum)/(n*xsq-xsum^2);
+                a0=b-a*a-1;
+                disp(a1,"a1=");
+                disp(a0,"a0=");
+                disp("the equation odf the line obtained is y=a0+a1*x");
+
+                2.polynomial regression:
+
+                fit a second degree polynomial to the foll data
+                x  0  1  2  3  4  5  
+                y  2.1  7.7  13.6  27.2  40.9   61.1
+
+                x=[0,1,2,3,4,5];
+                y=[2.1,7.7,13.6,27.2,40.9,61.1];
+                n=6;
+                s=0;
+                xsq=0;
+                xcube=0;
+                x4=0;
+                x2y=0;
+                xsum=0;
+                ysum=0;
+                for i=1:6
+                s=s+(det(x(1,i)))*(det(y(1,i)));
+                xsq=xsq+(det(x(1,i))^2);
+                xsum=xsum+(det(x(1,i)));
+                ysum=ysum+(det(y(1,i)));
+                xcube=xcube+(det(x(1,i))^3);
+                x4=x4+(det(x(1,i))^4);
+                x2y=x2y+(det(x(1,i))^2)*(det(y(1,i)));
+                end
+                disp(s,"sum of product of x and y=");
+                disp(xsq,"sum of square of x=");
+                disp(xcube,"sum of cube of x=");
+                disp(x4,"sum of x^4");
+                disp(x2y,"sumof x^2*y=");
+                disp(xsum,"sum of all the x=");
+                disp(ysum,"sum of all the y=");
+                x=[n,xsum,xsq;xsum,xsq,xcube;xsq,xcube,x4];
+                z=[ysum;s;x2y];
+                disp(x^1*z,"y=");
+                disp("the polynomial equation is given by a+bx+cz^2");
+
+            </code></pre>
+        </section>
+
+        <section id="prac8">
+            <h2>Regression 2: </h2>
+            <pre><code>
+                1.multiple regression:
+
+                the foll data was calculated from the eq y=5+4x1-3x2
+                x1  0  2  2.5  1  4  7 
+                x2  0  1  2  3  6  2
+                y  5  10  9  0  3  27
+                
+                x1=[0,2,2.5,1,4,7];
+                x2=[0,1,2,3,6,2];
+                y=[5,10,9,0,3,27];
+                x1sum=0;
+                x2sum=0;
+                ysum=0;
+                x12sum=0;
+                x22sum=0;
+                x1ysum=0;
+                x2ysum=0;
+                x1x2sum=0;
+                n=6;
+                for i=1:6
+                    y(i)=5+4*x1(i)-3*x2(i);
+                    x12(i)=x1(i)^2;
+                    x22(i)=x2(i)^2;
+                    x1x2(i)=x1(i)*x2(i);
+                    x1y(i)=x1(i)*y(i);
+                    x2y(i)=x2(i)*y(i);
+                    x1sum=x1sum+x1(i);
+                    x2sum=x2sum+x2(i);
+                    ysum=ysum+y(i);
+                    x12sum=x12sum+x12(i);
+                    x22sum=x22sum+x22(i);
+                    x1ysum=x1ysum+x1y(i);
+                    x2ysum=x2ysum+x2y(i);
+                    x1x2sum=x1x2sum+x1x2(i);
+                end
+                x=[n,x1sum,x2sum;x1sum,x12sum,x1x2sum;x2sum,x1x2sum,x22sum];
+                y=[ysum;x1ysum;x2ysum];
+                z=inv(x)*y;
+                a0=(det(z(1,1)));
+                a1=(det(z(2,1)));
+                a2=(det(z(3,1)));
+                disp(a0,"a0=");
+                disp(a1,"a1=");
+                disp(a2,"a2=");
+                disp("thus y=a0+a1*x1+a2*x2")
+            </code></pre>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>nsm</p>
+    </footer>
+
+    <script>
+        function promptForPassword() {
+        var password = prompt("Enter the password:");
+        if (password === "frog" || password === "beduk") {
+        } else {
+            alert("Incorrect password! Please try again.");
+            location.reload();
+        }
+        }
+        window.onload = promptForPassword;
+    </script>
+</body>
+</html>
